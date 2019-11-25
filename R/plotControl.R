@@ -9,11 +9,11 @@
 # copyright (c) 2017-18, Thiago P. Oliveira                           #
 #                                                                     #
 # First version: 11/10/2017                                           #
-# Last update: 18/06/2018                                             #
+# Last update: 29/07/2019                                             #
 # License: GNU General Public License version 2 (June, 1991) or later #
 #                                                                     #
 #######################################################################
-##' @title Specifying graphical control values for \code{lcc} class
+##' @title Specifying Graphical Control Values for \code{lcc} Class
 ##'
 ##' @description The values supplied in the \code{plotControl()} call
 ##'   replace the defaults, and a \code{\link{list}} with all settings

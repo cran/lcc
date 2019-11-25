@@ -9,12 +9,12 @@
 # copyright (c) 2017-18, Thiago P. Oliveira                           #
 #                                                                     #
 # First version: 11/10/2017                                           #
-# Last update: 18/06/2018                                             #
+# Last update: 29/07/2019                                             #
 # License: GNU General Public License version 2 (June, 1991) or later #
 #                                                                     #
 #######################################################################
 
-##' @title Regular sequence for the time variable
+##' @title Regular Sequence for the Time Variable
 ##'
 ##' @description An list specifying control arguments to generate a
 ##'   regular sequence for the time variable returned by the function
@@ -41,6 +41,7 @@
 ##' @export
 
 time_lcc<-function(time,from, to, n){
-  tk.new<-unique(sort(c(seq.int(from=from, to=to, length.out = n),time)))
+  tk.new<-unique(sort(c(seq.int(from=from, to=to, length.out = n),
+                        time)))
   return(tk.new)
 }

@@ -9,16 +9,20 @@
 # copyright (c) 2017-18, Thiago P. Oliveira                           #
 #                                                                     #
 # First version: 11/10/2017                                           #
-# Last update: 18/06/2018                                             #
+# Last update: 29/07/2019                                             #
 # License: GNU General Public License version 2 (June, 1991) or later #
 #                                                                     #
 #######################################################################
 
-##' @title Internal function to produces a longitudinal Perason correlation plot.
+##' @title Internal Function to Produces a Longitudinal Perason
+##'   Correlation Plot.
 ##'
-##' @description This is an internally called function used to produces a longitudinal Perason correlation plot from fitted ans sampled values with or not non-parametric confidence intervals.
+##' @description This is an internally called function used to produces
+##'   a longitudinal Perason correlation plot from fitted ans sampled
+##'   values with or not non-parametric confidence intervals.
 ##'
-##' @details returns a inital plot for the longitudinal Pearson correlation.
+##' @details returns a inital plot for the longitudinal Pearson
+##'   correlation.
 ##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@usp.br}
 ##'
@@ -40,9 +44,11 @@ if(ci==FALSE){
     Time<-data_plot$Time
     Plot<-ggplot(data_plot, aes(y=LPC, x=Time))+
       geom_line(data=data_plot, colour=arg$colour, size=arg$size)+
-      geom_point(data=data_plot2, aes(y=Pearson, x=Time), shape=arg$shape)+
+      geom_point(data=data_plot2, aes(y=Pearson, x=Time),
+                 shape=arg$shape)+
       scale_y_continuous(limits = arg$scale_y_continuous)+
-      ggtitle(paste(levels(model$data$FacA)[2], "vs.", levels(model$data$FacA)[1]))+
+      ggtitle(paste(levels(model$data$method)[2], "vs.",
+                    levels(model$data$method)[1]))+
       labs(x = paste0(arg$xlab))+
       labs(y = paste0(arg$ylab))+
       theme(plot.title = element_text(hjust = 0.5))
@@ -64,14 +70,17 @@ if(ci==FALSE){
       Time<-data_plot[[i]]$Time
       Plot[[i]]<-ggplot(data_plot[[i]], aes(y=LPC2, x=Time))+
         geom_line(data=data_plot[[i]], colour=arg$colour, size=arg$size)+
-        geom_point(data=data_plot2[[i]], aes(y=Pearson, x=Time), shape=arg$shape)+
+        geom_point(data=data_plot2[[i]], aes(y=Pearson, x=Time),
+                   shape=arg$shape)+
         scale_y_continuous(limits = arg$scale_y_continuous)+
-        ggtitle(paste(levels(model$data$FacA)[i+1], "vs.", levels(model$data$FacA)[1]))+
+        ggtitle(paste(levels(model$data$method)[i+1], "vs.",
+                      levels(model$data$method)[1]))+
         labs(x = paste0(arg$xlab))+
         labs(y = paste0(arg$ylab))+
         theme(plot.title = element_text(hjust = 0.5))
       if(arg$scale_y_continuous[2]==1){
-        Plot[[i]]<-Plot[[i]]+geom_hline(yintercept = 1, linetype="dashed")
+        Plot[[i]]<-Plot[[i]]+geom_hline(yintercept = 1,
+                                        linetype="dashed")
       }
     }
     numPlots = length(Plot)
@@ -81,7 +90,8 @@ if(ci==FALSE){
     rows<-signif(sqrt(ldb),1)
     layout <- matrix(seq(1, cols * ceiling(numPlots/cols)),
                      ncol = cols, nrow = rows)
-    pushViewport(viewport(layout = grid.layout(nrow(layout), ncol(layout))))
+    pushViewport(viewport(layout = grid.layout(nrow(layout),
+                                               ncol(layout))))
     for (i in 1:numPlots) {
       matchidx <- as.data.frame(which(layout == i, arr.ind = TRUE))
       print(Plot[[i]], vp = viewport(layout.pos.row = matchidx$row,
@@ -109,11 +119,13 @@ if(ldb == 1) {
   upper_LPC<-data_plot$upper_LPC
   Plot<-ggplot(data_plot, aes(y=LPC, x=Time))+
     geom_line(data=data_plot, colour=arg$colour, size=arg$size)+
-    geom_point(data=data_plot2, aes(y=Pearson, x=Time), shape=arg$shape)+
+    geom_point(data=data_plot2, aes(y=Pearson, x=Time),
+               shape=arg$shape)+
     geom_ribbon(data=data_plot,aes(ymin=lower_LPC,ymax=upper_LPC),
                 fill="grey70", alpha=0.3,show.legend = TRUE)+
     scale_y_continuous(limits = arg$scale_y_continuous)+
-    ggtitle(paste(levels(model$data$FacA)[2], "vs.", levels(model$data$FacA)[1]))+
+    ggtitle(paste(levels(model$data$method)[2], "vs.",
+                  levels(model$data$method)[1]))+
     labs(x = paste0(arg$xlab))+
     labs(y = paste0(arg$ylab))+
     theme(plot.title = element_text(hjust = 0.5))
@@ -139,11 +151,13 @@ if(ldb == 1) {
     upper_LPC<-data_plot[[i]]$upper_LPC
     Plot[[i]]<-ggplot(data_plot[[i]], aes(y=LPC2, x=Time))+
       geom_line(data=data_plot[[i]], colour=arg$colour, size=arg$size)+
-      geom_point(data=data_plot2[[i]], aes(y=Pearson, x=Time), shape=arg$shape)+
+      geom_point(data=data_plot2[[i]], aes(y=Pearson, x=Time),
+                 shape=arg$shape)+
       geom_ribbon(data=data_plot[[i]],aes(ymin=lower_LPC,ymax=upper_LPC),
                   fill="grey70", alpha=0.3,show.legend = TRUE)+
       scale_y_continuous(limits = arg$scale_y_continuous)+
-      ggtitle(paste(levels(model$data$FacA)[i+1], "vs.", levels(model$data$FacA)[1]))+
+      ggtitle(paste(levels(model$data$method)[i+1], "vs.",
+                    levels(model$data$method)[1]))+
       labs(x = paste0(arg$xlab))+
       labs(y = paste0(arg$ylab))+
       theme(plot.title = element_text(hjust = 0.5))

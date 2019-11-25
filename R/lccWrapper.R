@@ -2,25 +2,28 @@
 #                                                                     #
 # Package: lcc                                                        #
 #                                                                     #
-# File: lccWrapper.R                                                 #
-# Contains: lccWrapper function                                      #
+# File: lccWrapper.R                                                  #
+# Contains: lccWrapper function                                       #
 #                                                                     #
 # Written by Thiago de Paula Oliveira                                 #
 # copyright (c) 2017-18, Thiago P. Oliveira                           #
 #                                                                     #
 # First version: 11/10/2017                                           #
-# Last update: 18/06/2018                                             #
+# Last update: 29/07/2019                                             #
 # License: GNU General Public License version 2 (June, 1991) or later #
 #                                                                     #
 #######################################################################
 
-##' @title Internal function to to prepare the \code{lccBuilder} function
+##' @title Internal Function to Prepare the \code{lccBuilder}
+##'   Function
 ##'
-##' @description This is an internally called function used to prepare the \code{\link[lcc]{lccBuilder}} function.
+##' @description This is an internally called function used to prepare
+##'   the \code{\link[lcc]{lccBuilder}} function.
 ##'
 ##' @usage NULL
 ##'
-##' @details returns a vector or list containing the longitudinal concordance correlation estimates.
+##' @details returns a vector or list containing the longitudinal
+##'   concordance correlation estimates.
 ##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@usp.br}
 ##'

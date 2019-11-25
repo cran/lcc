@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotmethod_lcc.R
 \name{lccPlot}
 \alias{lccPlot}
-\title{Plot an lcc object}
+\title{Plot Fitted Curves from an \code{lcc} Object.}
 \usage{
 lccPlot(obj, type, control, ...)
 }
@@ -70,6 +70,13 @@ lccPlot(fm1, type="lcc")
 lccPlot(fm1, type="lpc")
 lccPlot(fm1, type="la")
 
+## Using the key (+) to constructing sophisticated graphics
+lccPlot(fm1, type="lcc") +
+ scale_y_continuous(limits=c(-1, 1)) +
+ labs(title="My title",
+ y ="Longitudinal Concordance Correlation",
+ x = "Time (Days)")
+
 ## Runing all.plots = FALSE and saving plots as pdf
 \dontrun{
 data(simulated_hue_block)
@@ -81,6 +88,7 @@ fm2<-lcc(dataset = simulated_hue_block, subject = "Fruit",
 ggsave("myplots.pdf",
        lccPlot(fm2, type="lcc", control=list(all.plot=FALSE)))
 }
+
 }
 \references{
 Lin, L. A Concordance Correlation Coefficient to

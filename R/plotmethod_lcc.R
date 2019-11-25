@@ -9,11 +9,11 @@
 # copyright (c) 2017-18, Thiago P. Oliveira                           #
 #                                                                     #
 # First version: 11/10/2017                                           #
-# Last update: 18/06/2018                                             #
+# Last update: 29/07/2019                                             #
 # License: GNU General Public License version 2 (June, 1991) or later #
 #                                                                     #
 #######################################################################
-##' @title Plot an lcc object
+##' @title Plot Fitted Curves from an \code{lcc} Object.
 ##'
 ##' @description A plot of predictions versus the time covariate is
 ##'   generated. Predicted values are joined by lines while sampled
@@ -94,6 +94,14 @@
 ##' lccPlot(fm1, type="la")
 ##'
 ##' @examples
+##' ## Using the key (+) to constructing sophisticated graphics
+##' lccPlot(fm1, type="lcc") +
+##'  scale_y_continuous(limits=c(-1, 1)) +
+##'  labs(title="My title",
+##'  y ="Longitudinal Concordance Correlation",
+##'  x = "Time (Days)")
+##'
+##' @examples
 ##' ## Runing all.plots = FALSE and saving plots as pdf
 ##' \dontrun{
 ##' data(simulated_hue_block)
@@ -105,6 +113,7 @@
 ##' ggsave("myplots.pdf",
 ##'        lccPlot(fm2, type="lcc", control=list(all.plot=FALSE)))
 ##' }
+##'
 ##' @export
 
 lccPlot<-function(obj, type = "lcc", control = list(), ...){
@@ -112,10 +121,10 @@ lccPlot<-function(obj, type = "lcc", control = list(), ...){
                              call.=FALSE)
   # Arguments for the plot
   plot.cons<-plotControl(shape=1, colour="black",
-    size=0.5, xlab = "Time",
-    ylab = "LCC",
-    scale_y_continuous=c(0,1),
-    all.plot = TRUE)
+                         size=0.5, xlab = "Time",
+                         ylab = "LCC",
+                         scale_y_continuous=c(0,1),
+                         all.plot = TRUE)
   if (type == "lpc") plot.cons$ylab = "LPC"
   if (type == "la") plot.cons$ylab = "LA"
   if(length(control)){
@@ -134,9 +143,9 @@ lccPlot<-function(obj, type = "lcc", control = list(), ...){
       plot.cons[[pos[i]]]<-control[[i]]
     }
   }
-
-
+  #---------------------------------------------------------------------
   #Standard arguments
+  #---------------------------------------------------------------------
   nd<-obj$plot_info$nd
   model<-obj$model
   tk.plot<-obj$plot_info$tk.plot
@@ -145,67 +154,72 @@ lccPlot<-function(obj, type = "lcc", control = list(), ...){
   ci<-obj$plot_info$ci
   components<-obj$plot_info$components
   if (components == FALSE &  type != "lcc") {
-    stop("'lpc' and 'la' plots only if components is TRUE",
+    stop("'lpc' and 'la' plots are only available if 'components = TRUE' in the 'lcc' call",
          call.= FALSE)
   }
   #---------------------------------------------------------------------
     if(ci==FALSE) {
       if(ldb == 1) {
         if (type == "lcc") {
-          plot_lcc(rho=obj$plot_info$rho, tk.plot= tk.plot,
-            tk.plot2=tk.plot2, ldb=ldb,
-            model=model, ci = ci,
-            arg=plot.cons)
+          lccplot <- plot_lcc(rho=obj$plot_info$rho, tk.plot= tk.plot,
+                              tk.plot2=tk.plot2, ldb=ldb,
+                              model=model, ci = ci,
+                              arg=plot.cons)
         }
         if(components==TRUE){
           if (type == "lpc") {
-            plot_lpc(LPC=obj$plot_info$rho.pearson, tk.plot= tk.plot,
-              tk.plot2=tk.plot2, ldb=ldb,
-              model=model, ci = ci, arg = plot.cons)
+            lccplot <- plot_lpc(LPC=obj$plot_info$rho.pearson,
+                                tk.plot= tk.plot,
+                                tk.plot2=tk.plot2, ldb=ldb,
+                                model=model, ci = ci, arg = plot.cons)
           }
           if (type == "la") {
-            plot_la(Cb=obj$plot_info$Cb, tk.plot= tk.plot,
-              tk.plot2=tk.plot2, ldb=ldb,
-              model=model, ci = ci, arg = plot.cons)
+            lccplot <- plot_la(Cb=obj$plot_info$Cb, tk.plot= tk.plot,
+                               tk.plot2=tk.plot2, ldb=ldb,
+                               model=model, ci = ci, arg = plot.cons)
           }
          }
       } else {
          if (type == "lcc") {
-          plot_lcc(rho=obj$plot_info$rho, tk.plot= tk.plot,
-            tk.plot2=tk.plot2, ldb=ldb, model=model,
-            ci = ci, arg = plot.cons)
+          lccplot <- plot_lcc(rho=obj$plot_info$rho, tk.plot= tk.plot,
+                              tk.plot2=tk.plot2, ldb=ldb, model=model,
+                              ci = ci, arg = plot.cons)
           }
          if(components==TRUE){
            if (type == "lpc") {
-            plot_lpc(LPC=obj$plot_info$rho.pearson, tk.plot= tk.plot,
-              tk.plot2=tk.plot2, ldb=ldb, model=model,
-              ci = ci, arg = plot.cons)
+             lccplot <- plot_lpc(LPC=obj$plot_info$rho.pearson,
+                                 tk.plot= tk.plot,
+                                tk.plot2=tk.plot2, ldb=ldb, model=model,
+                                ci = ci, arg = plot.cons)
            }
            if (type == "la") {
-            plot_la(Cb=obj$plot_info$Cb, tk.plot= tk.plot,
-              tk.plot2=tk.plot2, ldb=ldb, model=model,
-              ci = ci, arg = plot.cons)
+            lccplot <- plot_la(Cb=obj$plot_info$Cb, tk.plot= tk.plot,
+                               tk.plot2=tk.plot2, ldb=ldb, model=model,
+                               ci = ci, arg = plot.cons)
            }
           }
       }
     }else{
       ENV.LCC<-obj$plot_info$ENV.LCC
       if (type == "lcc") {
-        plot_lcc(rho=obj$plot_info$rho, ENV.LCC=ENV.LCC, tk.plot= tk.plot,
-          tk.plot2=tk.plot2, ldb=ldb, model=model,
-          ci = ci, arg = plot.cons)
+        lccplot <- plot_lcc(rho=obj$plot_info$rho, ENV.LCC=ENV.LCC,
+                            tk.plot= tk.plot, tk.plot2=tk.plot2, ldb=ldb,
+                            model=model, ci = ci, arg = plot.cons)
         }
       if(components==TRUE){
         if (type == "lpc") {
         ENV.LPC<-obj$plot_info$ENV.LPC
-        plot_lpc(LPC=obj$plot_info$rho.pearson,ENV.LPC=ENV.LPC, tk.plot= tk.plot,
-          tk.plot2=tk.plot2, ldb=ldb, model=model, ci = ci, arg = plot.cons)
+        lccplot <- plot_lpc(LPC=obj$plot_info$rho.pearson,ENV.LPC=ENV.LPC,
+                            tk.plot= tk.plot, tk.plot2=tk.plot2, ldb=ldb,
+                            model=model, ci = ci, arg = plot.cons)
         }
         if (type == "la") {
         ENV.Cb<-obj$plot_info$ENV.LA
-        plot_la(Cb=obj$plot_info$Cb,ENV.Cb = ENV.Cb, tk.plot= tk.plot,
-          tk.plot2=tk.plot2, ldb=ldb, model=model, ci = ci, arg = plot.cons)
+        lccplot <- plot_la(Cb=obj$plot_info$Cb,ENV.Cb = ENV.Cb, tk.plot= tk.plot,
+                           tk.plot2=tk.plot2, ldb=ldb, model=model, ci = ci,
+                           arg = plot.cons)
         }
        }
     }
+  return(invisible(lccplot))
 }

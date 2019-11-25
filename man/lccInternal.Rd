@@ -2,11 +2,16 @@
 % Please edit documentation in R/lcc_internal.R
 \name{lccInternal}
 \alias{lccInternal}
-\title{Internal function to prepare \code{lcc} objects}
+\title{Internal Function to Prepare \code{lcc} Objects}
 \description{
-This is an internally called function used to prepare \code{lcc} objects for calculate the longitudinal concordance correlation, longitudinal Pearson correlation, longitudinal bias corrector, and plotting
+This is an internally called function used to prepare
+  \code{lcc} objects for calculate the longitudinal concordance
+  correlation, longitudinal Pearson correlation, longitudinal bias
+  corrector, and plotting
 }
 \author{
-Thiago de Paula Oliveira, \email{thiago.paula.oliveira@usp.br} and Rafael de Andrade Moral, \email{rafael_moral@yahoo.com.br}
+Thiago de Paula Oliveira,
+  \email{thiago.paula.oliveira@usp.br} and Rafael de Andrade Moral,
+  \email{rafael_moral@yahoo.com.br}
 }
 \keyword{internal}
