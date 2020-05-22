@@ -1,5 +1,5 @@
-1d53235a736e3984803a10a5932233c7 *DESCRIPTION
-46b9ee0aca67e3413676ae41c34818dc *NAMESPACE
+7d6a5d2b62bfd637fb4609fd245391e0 *DESCRIPTION
+d7071eebd4f96a62d9e698b5e55144b0 *NAMESPACE
 89bc37c20e9052742e13717af293ab4e *R/CCC.R
 dd898abc3a4bcd2dcdf55ab1a1eec0d6 *R/ciBuilder.R
 65d5bb590b162d143f0d45a83e5db370 *R/ciCompute.R
@@ -9,8 +9,8 @@ b4b4916b170b8b2953d594290a45cd98 *R/dataBuilder.R
 9aee2fc5a73320048ccf7d79fabc78bb *R/init.R
 9f76f122f9c769de6e3ded59ec291a5f *R/laBuilder.R
 3cedf222404564750320d68c6e378188 *R/laWrapper.R
-8f996e958083d911264f710b6803934f *R/lcc.R
-c774a99ed726169f905a1be5597f7210 *R/lccBootstrap.R
+2f7524898d9cd108b84306c0b4207abe *R/lcc.R
+fb78beca5d28f8e94d1c66858572687d *R/lccBootstrap.R
 83226abe71fb077b176160d899bdc6fe *R/lccBuilder.R
 21da2d4899623178f984ed00d0b874b0 *R/lccModel.R
 1cb518ddbfa1365e8626a67f122272b9 *R/lccSummary.R
@@ -54,7 +54,7 @@ c85db513605075a92adac81c3bc4883e *man/is.lcc.Rd
 25749c304a86068d5290e2ead8768818 *man/laBootstrap.Rd
 435c37da226033cbacfb7c8471f5a0c1 *man/laBuilder.Rd
 0e2fb2d2dc29e44dce90027ad1ed68e3 *man/laWrapper.Rd
-2feafdc411271354a927144b4582ef2e *man/lcc.Rd
+a664a81222092a4ca935759e79786388 *man/lcc.Rd
 9ea48fff6b574b8fcc47efbd069e4bfe *man/lccBootstrap.Rd
 470bedd9be04bffd465d64db6ec12cff *man/lccBuilder.Rd
 04540b19f50302d9fafa1536db2c11ce *man/lccInternal.Rd
