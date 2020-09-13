@@ -66,9 +66,10 @@
 ##' \code{\link[ggplot2]{ggplot}} object by different pages using the
 ##' \code{\link[gridExtra]{marrangeGrob}} function.}}
 ##'
-##' @param ... not used.
+##' @param ... arguments to be passed to
+##'   \code{\link[ggplot2]{facet_wrap}} function
 ##'
-##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@usp.br}
+##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @references Lin, L. A Concordance Correlation Coefficient to
 ##'   Evaluate Reproducibility. \emph{Biometrics}, 45, n. 1, 255-268,
@@ -93,6 +94,20 @@
 ##' lccPlot(fm1, type="lpc")
 ##' lccPlot(fm1, type="la")
 ##'
+##' ## Using themes of ggplot2 package
+##' lccPlot(fm1, type = "lpc")+
+##'  ylim(0,1) +
+##'  geom_hline(yintercept = 1, linetype = "dashed") +
+##'  scale_x_continuous(breaks = seq(1,max(hue$Time),2))+
+##'  theme_bw() +
+##'  theme(legend.position = "none", aspect.ratio = 1,
+##'   axis.line.x = element_line(color="black", size = 0.5),
+##'   axis.line.y = element_line(color="black", size = 0.5),
+##'   axis.title.x = element_text(size=14),
+##'   axis.title.y = element_text(size=14),
+##'   axis.text.x = element_text(size = 14, face = "plain"),
+##'   axis.text.y = element_text(size = 14, face = "plain"))
+##'
 ##' @examples
 ##' ## Using the key (+) to constructing sophisticated graphics
 ##' lccPlot(fm1, type="lcc") +
@@ -111,7 +126,7 @@
 ##'          qf = 2, qr = 1, components = TRUE, covar = c("Block"),
 ##'          time_lcc = list(n=50, from=min(Time), to=max(Time)))
 ##' ggsave("myplots.pdf",
-##'        lccPlot(fm2, type="lcc", control=list(all.plot=FALSE)))
+##'        lccPlot(fm2, type="lcc", scales = "free"))
 ##' }
 ##'
 ##' @export
@@ -122,9 +137,7 @@ lccPlot<-function(obj, type = "lcc", control = list(), ...){
   # Arguments for the plot
   plot.cons<-plotControl(shape=1, colour="black",
                          size=0.5, xlab = "Time",
-                         ylab = "LCC",
-                         scale_y_continuous=c(0,1),
-                         all.plot = TRUE)
+                         ylab = "LCC")
   if (type == "lpc") plot.cons$ylab = "LPC"
   if (type == "la") plot.cons$ylab = "LA"
   if(length(control)){
@@ -164,38 +177,40 @@ lccPlot<-function(obj, type = "lcc", control = list(), ...){
           lccplot <- plot_lcc(rho=obj$plot_info$rho, tk.plot= tk.plot,
                               tk.plot2=tk.plot2, ldb=ldb,
                               model=model, ci = ci,
-                              arg=plot.cons)
+                              arg=plot.cons, ...)
         }
         if(components==TRUE){
           if (type == "lpc") {
             lccplot <- plot_lpc(LPC=obj$plot_info$rho.pearson,
                                 tk.plot= tk.plot,
                                 tk.plot2=tk.plot2, ldb=ldb,
-                                model=model, ci = ci, arg = plot.cons)
+                                model=model, ci = ci, arg = plot.cons,
+                                ...)
           }
           if (type == "la") {
             lccplot <- plot_la(Cb=obj$plot_info$Cb, tk.plot= tk.plot,
                                tk.plot2=tk.plot2, ldb=ldb,
-                               model=model, ci = ci, arg = plot.cons)
+                               model=model, ci = ci, arg = plot.cons,
+                               ...)
           }
          }
       } else {
          if (type == "lcc") {
           lccplot <- plot_lcc(rho=obj$plot_info$rho, tk.plot= tk.plot,
                               tk.plot2=tk.plot2, ldb=ldb, model=model,
-                              ci = ci, arg = plot.cons)
+                              ci = ci, arg = plot.cons, ...)
           }
          if(components==TRUE){
            if (type == "lpc") {
              lccplot <- plot_lpc(LPC=obj$plot_info$rho.pearson,
                                  tk.plot= tk.plot,
                                 tk.plot2=tk.plot2, ldb=ldb, model=model,
-                                ci = ci, arg = plot.cons)
+                                ci = ci, arg = plot.cons, ...)
            }
            if (type == "la") {
             lccplot <- plot_la(Cb=obj$plot_info$Cb, tk.plot= tk.plot,
                                tk.plot2=tk.plot2, ldb=ldb, model=model,
-                               ci = ci, arg = plot.cons)
+                               ci = ci, arg = plot.cons, ...)
            }
           }
       }
@@ -204,20 +219,20 @@ lccPlot<-function(obj, type = "lcc", control = list(), ...){
       if (type == "lcc") {
         lccplot <- plot_lcc(rho=obj$plot_info$rho, ENV.LCC=ENV.LCC,
                             tk.plot= tk.plot, tk.plot2=tk.plot2, ldb=ldb,
-                            model=model, ci = ci, arg = plot.cons)
+                            model=model, ci = ci, arg = plot.cons, ...)
         }
       if(components==TRUE){
         if (type == "lpc") {
         ENV.LPC<-obj$plot_info$ENV.LPC
         lccplot <- plot_lpc(LPC=obj$plot_info$rho.pearson,ENV.LPC=ENV.LPC,
                             tk.plot= tk.plot, tk.plot2=tk.plot2, ldb=ldb,
-                            model=model, ci = ci, arg = plot.cons)
+                            model=model, ci = ci, arg = plot.cons, ...)
         }
         if (type == "la") {
         ENV.Cb<-obj$plot_info$ENV.LA
         lccplot <- plot_la(Cb=obj$plot_info$Cb,ENV.Cb = ENV.Cb, tk.plot= tk.plot,
                            tk.plot2=tk.plot2, ldb=ldb, model=model, ci = ci,
-                           arg = plot.cons)
+                           arg = plot.cons, ...)
         }
        }
     }

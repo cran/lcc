@@ -161,7 +161,7 @@
 ##'   \item{data}{the input dataset.}
 ##'
 ##' @author Thiago de Paula Oliveira,
-##'   \email{thiago.paula.oliveira@@usp.br}, Rafael de Andrade Moral, John Hinde
+##'   \email{thiago.paula.oliveira@@alumni.usp.br}, Rafael de Andrade Moral, John Hinde
 ##'
 ##' @seealso \code{\link{summary.lcc}}, \code{\link{fitted.lcc}},
 ##'   \code{\link{print.lcc}}, \code{\link{lccPlot}},
@@ -190,14 +190,21 @@
 ##' print(fm1)
 ##' summary(fm1)
 ##' summary(fm1, type="model")
-##' lccPlot(fm1)
+##' lccPlot(fm1) +
+##'  ylim(0,1) +
+##'  geom_hline(yintercept = 1, linetype = "dashed") +
+##'  scale_x_continuous(breaks = seq(1,max(hue$Time),2))
 ##'
 ##' @examples
 ##' ## Estimating longitudinal Pearson correlation and longitudinal
 ##' #accuracy
 ##' fm2 <- update(fm1, components = TRUE)
 ##' summary(fm2)
-##' lccPlot(fm2)
+##' lccPlot(fm2) +
+##'  ylim(0,1) +
+##'  geom_hline(yintercept = 1, linetype = "dashed") +
+##'  scale_x_continuous(breaks = seq(1,max(hue$Time),2)) +
+##'  theme_bw()
 ##'
 ##' @examples
 ##' \dontrun{
@@ -205,7 +212,11 @@
 ##' fm3 <- update(fm2, time_lcc = list(from = min(hue$Time),
 ##'            to = max(hue$Time), n=40))
 ##' summary(fm3)
-##' lccPlot(fm3)
+##' lccPlot(fm3) +
+##'  ylim(0,1) +
+##'  geom_hline(yintercept = 1, linetype = "dashed") +
+##'  scale_x_continuous(breaks = seq(1,max(hue$Time),2)) +
+##'  theme_bw()
 ##' }
 ##'
 ##' @examples
@@ -218,16 +229,20 @@
 ##' fitted(fm4)
 ##' fitted(fm4, type = "lpc")
 ##' fitted(fm4, type = "la")
-##' lccPlot(fm4)
-##' lccPlot(fm4, type = "lpc")
-##' lccPlot(fm4, type = "la")
+##' lccPlot(fm4) +
+##'  geom_hline(yintercept = 1, linetype = "dashed")
+##' lccPlot(fm4, type = "lpc") +
+##'  geom_hline(yintercept = 1, linetype = "dashed")
+##' lccPlot(fm4, type = "la") +
+##'  geom_hline(yintercept = 1, linetype = "dashed")
 ##'
 ##' @examples
 ##' \dontrun{
 ##' ## Non-parametric confidence interval with 500 bootstrap samples
 ##' fm5 <- update(fm1, ci = TRUE, nboot = 500)
 ##' summary(fm5)
-##' lccPlot(fm5)
+##' lccPlot(fm5) +
+##'  geom_hline(yintercept = 1, linetype = "dashed")
 ##' }
 ##'
 ##' @examples
@@ -240,7 +255,9 @@
 ##'            qf = 2, qr = 1, components = TRUE,
 ##'            time_lcc = list(n=50, from=min(Time), to=max(Time)))
 ##' summary(fm6)
-##' lccPlot(fm6)
+##' lccPlot(fm6, scales = "free")
+##' lccPlot(fm6, type="lpc", scales = "free")
+##' lccPlot(fm6, type="la", scales = "free")
 ##' detach(simulated_hue)
 ##' }
 ##'
@@ -255,7 +272,7 @@
 ##'            qf = 2, qr = 1, components = TRUE, covar = c("Block"),
 ##'            time_lcc = list(n=50, from=min(Time), to=max(Time)))
 ##' summary(fm7)
-##' lccPlot(fm7)
+##' lccPlot(fm7, scales="free")
 ##' detach(simulated_hue_block)
 ##' }
 ##'
