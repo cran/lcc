@@ -1,4 +1,4 @@
-29ecfed41bff22e0d0db95af5f7d33ba *DESCRIPTION
+0df36d1a3b42289e08cb75d44e9ee310 *DESCRIPTION
 089d43857ea4d87818830dd07f4123c9 *NAMESPACE
 bceb02374648a60859af41e0ae65017d *R/CCC.R
 4baeb00e59c098868774eb4bd2ed508d *R/ciBuilder.R
@@ -9,7 +9,7 @@ a2b40a0b6c83b4246bbc4803544f960a *R/dataBuilder.R
 ce390b5c6b1a84a978da0a1111cd8735 *R/init.R
 b41bf3dad904124ffe4650c57e959e2d *R/laBuilder.R
 06cae4ef51840f6f9c23cd4c1c8f0719 *R/laWrapper.R
-1c58e01678372a695a07910eca0390b7 *R/lcc.R
+bf8ddc17c751492a2bb7f88e20ba52b4 *R/lcc.R
 3d9c67457c7d01d43344eaf9f826170f *R/lccBootstrap.R
 09fbf71b501c3e740d2926f9339f5527 *R/lccBuilder.R
 89947827788310fae4b88b24ab7fc4ac *R/lccModel.R
@@ -32,6 +32,7 @@ ce4afec066509fb02bc4335886800415 *R/time_lcc.R
 5a37baf0543a298c68e6b7d34623919a *data/hue.RData
 8eb6df2a270e3d9cc417fb3350c832a8 *data/simulated_hue.RData
 86b6da360582b492f03bec41d3ac598f *data/simulated_hue_block.RData
+c60d318dabd3ac479b3533beee595de5 *inst/CITATION
 20b45172327f145b3edeb2f33a353017 *man/AIC.lcc.Rd
 ec9a5d0242c8571bd2de3e5bb5d6950e *man/CCC.Rd
 4323769049a9e6ac95ba0624e221691f *man/CCC_lin.Rd
