@@ -4,6 +4,9 @@
 \alias{lccModel}
 \title{Internal Function to Fits a Linear Mixed-Effects Model in the
   Formulation Described in Laird and Ware (1982).}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to fits a
   linear mixed-effects model; see \code{\link[nlme]{lme}}.

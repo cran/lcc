@@ -27,6 +27,8 @@
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @usage NULL
+##' 
+##' @return No return value, called for side effects
 ##'
 ##' @keywords internal
 plotBuilder_lpc<-function(LPC, ENV.LPC, tk.plot, Pearson,

@@ -20,7 +20,7 @@
 ##'   linear mixed-effects model; see \code{\link[nlme]{lme}}.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -133,7 +133,7 @@ lccModel <- function(dataset, resp, subject, method, time, qf, qr,
     }
   }
   warning.count <- 0
-  if(class(model.lme) == "try-error") {
+  if (inherits(model.lme, "try-error")) {
     warning.count <- 1
     mes <- paste(capture.output(cat(model.lme[1])), collapse = " ")
   } else if(is.character(model.lme$apVar) == TRUE) {

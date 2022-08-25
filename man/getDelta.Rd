@@ -3,6 +3,9 @@
 \name{getDelta}
 \alias{getDelta}
 \title{Internal Function to Extract Variance Components Estimates.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to extract
   variance components estimate of \eqn{\Sigma} matrix based on

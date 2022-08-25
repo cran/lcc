@@ -22,7 +22,7 @@
 ##'
 ##' @usage NULL
 ##'
-##' @details returns a matrix or list of matrix containing the
+##' @return returns a matrix or list of matrix containing the
 ##'   non-parametric bootstrap interval.
 ##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
@@ -64,14 +64,14 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
       for(i in seq_len(length(LCC_Boot))) {
         if(is.null(LCC_Boot[[i]])==FALSE){
           LCC_IC[,i] <- LCC_Boot[[i]]
-        }else(cat(i,"\n"))
+        }else(message(i,"\n"))
       }
     ENV.LCC <- apply(LCC_IC, 1, quantile, probs=c(alpha/2,1-alpha/2))
     } else{
     for(i in seq_len(length(LCC_Boot))) {
       if(is.null(LCC_Boot[[i]])==FALSE){
         LCC_IC[,i] <- ZFisher(LCC_Boot[[i]])
-      }else(cat(i,"\n"))
+      }else(message(i,"\n"))
      }
     SE<-apply(LCC_IC, 1, sd)
     mean<-apply(LCC_IC, 1, mean)
@@ -88,14 +88,14 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
     for(i in seq_len(length(LPC_Boot))) {
       if(is.null(LPC_Boot[[i]])==FALSE){
         LPC_IC[,i] <- LPC_Boot[[i]]
-      }else(cat(i,"\n"))
+      }else(message(i,"\n"))
     }
     ENV.LPC <- apply(LPC_IC, 1, quantile, probs=c(alpha/2,1-alpha/2))
     } else{
       for(i in seq_len(length(LPC_Boot))) {
         if(is.null(LPC_Boot[[i]])==FALSE){
           LPC_IC[,i] <- ZFisher(LPC_Boot[[i]])
-        }else(cat(i,"\n"))
+        }else(message(i,"\n"))
       }
       SE<-apply(LPC_IC, 1, sd)
       mean<-apply(LPC_IC, 1, mean)
@@ -111,14 +111,14 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
     for(i in seq_len(length(Cb_Boot))) {
       if(is.null(Cb_Boot[[i]])==FALSE){
         Cb_IC[,i] <- Cb_Boot[[i]]
-      }else(cat(i,"\n"))
+      }else(message(i,"\n"))
     }
     ENV.Cb <- apply(Cb_IC, 1, quantile, probs=c(alpha/2,1-alpha/2))
     } else{
       for(i in seq_len(length(Cb_Boot))) {
         if(is.null(Cb_Boot[[i]])==FALSE){
           Cb_IC[,i] <- Arcsin(Cb_Boot[[i]])
-        }else(cat(i,"\n"))
+        }else(message(i,"\n"))
       }
       SE<-apply(Cb_IC, 1, sd)
       mean<-apply(Cb_IC, 1, mean)
@@ -144,7 +144,7 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
       for(j in seq_len(length(LCC_Boot))) {
         if(is.null(LCC_Boot[[j]])==FALSE){
           LCC_IC[[i]][,j] <- LCC_Boot[[j]][[i]]
-          }else(cat(i,"\n"))
+          }else(message(i,"\n"))
         }
       ENV.LCC[[i]] <- apply(LCC_IC[[i]], 1, quantile,
                             probs=c(alpha/2,1-alpha/2))
@@ -152,7 +152,7 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
         for(j in seq_len(length(LCC_Boot))) {
           if(is.null(LCC_Boot[[j]])==FALSE){
             LCC_IC[[i]][,j] <- ZFisher(LCC_Boot[[j]][[i]])
-          }else(cat(i,"\n"))
+          }else(message(i,"\n"))
         }
         SE_LCC[[i]]<-apply(LCC_IC[[i]], 1, sd)
         mean_LCC[[i]]<-apply(LCC_IC[[i]], 1, mean)
@@ -176,7 +176,7 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
       for(j in seq_len(length(LPC_Boot))) {
         if(is.null(LPC_Boot[[j]])==FALSE){
           LPC_IC[[i]][,j] <- LPC_Boot[[j]][[i]]
-        }else(cat(i,"\n"))
+        }else(message(i,"\n"))
       }
       ENV.LPC[[i]] <- apply(LPC_IC[[i]], 1, quantile,
                             probs=c(alpha/2,1-alpha/2))
@@ -184,7 +184,7 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
         for(j in seq_len(length(LPC_Boot))) {
           if(is.null(LPC_Boot[[j]])==FALSE){
             LPC_IC[[i]][,j] <- ZFisher(LPC_Boot[[j]][[i]])
-          }else(cat(i,"\n"))
+          }else(message(i,"\n"))
         }
         SE_LPC[[i]]<-apply(LPC_IC[[i]], 1, sd)
         mean_LPC[[i]]<-apply(LPC_IC[[i]], 1, mean)
@@ -209,7 +209,7 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
       for(j in seq_len(length(Cb_Boot))) {
         if(is.null(Cb_Boot[[j]])==FALSE){
           Cb_IC[[i]][,j] <- Cb_Boot[[j]][[i]]
-        }else(cat(i,"\n"))
+        }else(message(i,"\n"))
       }
       ENV.Cb[[i]] <- apply(Cb_IC[[i]], 1, quantile, probs=c(alpha/2,
                                                             1-alpha/2))
@@ -217,7 +217,7 @@ ciCompute<-function(rho, rho.pearson, Cb, tk.plot, tk.plot2, ldb, model,
         for(j in seq_len(length(Cb_Boot))) {
           if(is.null(Cb_Boot[[j]])==FALSE){
             Cb_IC[[i]][,j] <- Arcsin(Cb_Boot[[j]][[i]])
-          }else(cat(i,"\n"))
+          }else(message(i,"\n"))
         }
         SE_Cb[[i]]<-apply(Cb_IC[[i]], 1, sd)
         mean_Cb[[i]]<-apply(Cb_IC[[i]], 1, mean)

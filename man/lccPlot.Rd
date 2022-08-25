@@ -52,6 +52,9 @@ single page. If \code{FALSE} returns a single
 \item{...}{arguments to be passed to
 \code{\link[ggplot2]{facet_wrap}} function}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 A plot of predictions versus the time covariate is
   generated. Predicted values are joined by lines while sampled

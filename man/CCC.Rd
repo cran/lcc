@@ -4,6 +4,9 @@
 \alias{CCC}
 \title{Internal Function to Compute the Sampled Concordance
   Correlation Values.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to compute
   the sampled concordance correlation values.

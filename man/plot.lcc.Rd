@@ -63,6 +63,9 @@ if that is _above_ the figures when there is more than one.}
 
 \item{...}{further graphical parameters from 'par'.}
 }
+\value{
+Return plots for conditional error and random effects from the linear mixed-effects
+}
 \description{
 Diagnostic plots for conditional error and random
 effects from the linear mixed-effects fit are obtained. Six plots

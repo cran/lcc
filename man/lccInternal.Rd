@@ -3,6 +3,9 @@
 \name{lccInternal}
 \alias{lccInternal}
 \title{Internal Function to Prepare \code{lcc} Objects}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to prepare
   \code{lcc} objects for calculate the longitudinal concordance

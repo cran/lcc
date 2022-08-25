@@ -4,13 +4,13 @@
 \alias{lccWrapper}
 \title{Internal Function to Prepare the \code{lccBuilder}
   Function}
+\value{
+returns a vector or list containing the longitudinal
+  concordance correlation estimates.
+}
 \description{
 This is an internally called function used to prepare
   the \code{\link[lcc]{lccBuilder}} function.
-}
-\details{
-returns a vector or list containing the longitudinal
-  concordance correlation estimates.
 }
 \author{
 Thiago de Paula Oliveira, \email{thiago.paula.oliveira@alumni.usp.br}

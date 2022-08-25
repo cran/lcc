@@ -18,6 +18,9 @@ if \code{verbose = FALSE}. Defaults to \code{FALSE}.}
 
 \item{...}{further arguments passed to \code{\link{print}}.}
 }
+\value{
+Return no value, called for side effects
+}
 \description{
 Method print for the \code{anova.lcc}.
 }

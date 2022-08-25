@@ -23,7 +23,7 @@
 ##' @usage NULL
 ##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
-##'
+##' @return No return value, called for side effects
 ##' @importFrom stats cor cov
 ##'
 ##' @keywords internal

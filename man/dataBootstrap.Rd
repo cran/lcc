@@ -4,6 +4,9 @@
 \alias{dataBootstrap}
 \title{Internal Functions to Generate Bootstrap Samples Based on
   Dataset.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to generate
   bootstrap samples.

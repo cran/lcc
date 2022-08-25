@@ -21,7 +21,7 @@
 ##' @details returns a vector or list containing the longitudinal accuracy estimates.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @importFrom nlme getVarCov

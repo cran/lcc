@@ -4,13 +4,13 @@
 \alias{ciCompute}
 \title{Internal Function to Compute the Non-Parametric Bootstrap
   Interval.}
+\value{
+returns a matrix or list of matrix containing the
+  non-parametric bootstrap interval.
+}
 \description{
 This is an internally called function used to compute
   the non-parametric bootstrap interval.
-}
-\details{
-returns a matrix or list of matrix containing the
-  non-parametric bootstrap interval.
 }
 \author{
 Thiago de Paula Oliveira, \email{thiago.paula.oliveira@alumni.usp.br}

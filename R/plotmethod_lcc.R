@@ -69,6 +69,8 @@
 ##' @param ... arguments to be passed to
 ##'   \code{\link[ggplot2]{facet_wrap}} function
 ##'
+##' @return No return value, called for side effects
+##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @references Lin, L. A Concordance Correlation Coefficient to
@@ -132,7 +134,7 @@
 ##' @export
 
 lccPlot<-function(obj, type = "lcc", control = list(), ...){
-  if(class(obj)!="lcc") stop("Object must inherit from class \"lcc\"",
+  if (!inherits(obj, "lcc")) stop("Object must inherit from class \"lcc\"",
                              call.=FALSE)
   # Arguments for the plot
   plot.cons<-plotControl(shape=1, colour="black",

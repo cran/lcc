@@ -4,13 +4,13 @@
 \alias{lpcWrapper}
 \title{Internal Function to Prepare the \code{lpcBuilder}
   Function}
+\value{
+returns a vector or list containing the longitudinal
+  Pearson correlation estimates.
+}
 \description{
 This is an internally called function used toprepare
   the \code{\link[lcc]{lpcBuilder}} function.
-}
-\details{
-returns a vector or list containing the longitudinal
-  Pearson correlation estimates.
 }
 \author{
 Thiago de Paula Oliveira, \email{thiago.paula.oliveira@alumni.usp.br}

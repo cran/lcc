@@ -4,6 +4,9 @@
 \alias{lccSummary}
 \title{Internal Function to Summarize Fitted and Sampled Values for
   \code{lcc} Objects}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to summarize
   fitted and sampled values, and the concordance correlation

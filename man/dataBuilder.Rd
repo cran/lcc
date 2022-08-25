@@ -4,6 +4,9 @@
 \alias{dataBuilder}
 \title{Internal Function to Prepare the Dataset for \code{lcc}
 Objects}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to prepare
   the dataset for \code{lcc} objects

@@ -4,13 +4,13 @@
 \alias{lpcBuilder}
 \title{Internal Function to Estimate the Longitudinal Pearson
   Correlation.}
+\value{
+returns a vector or list containing the longitudinal
+  Pearson correlation estimates.
+}
 \description{
 This is an internally called function used to estimate
   the longitudinal Pearson correlation (LPC).
-}
-\details{
-returns a vector or list containing the longitudinal
-  Pearson correlation estimates.
 }
 \author{
 Thiago de Paula Oliveira, \email{thiago.paula.oliveira@alumni.usp.br}

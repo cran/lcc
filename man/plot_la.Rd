@@ -4,6 +4,9 @@
 \alias{plot_la}
 \title{Internal Function to Prepare the \code{plotBuilder_la}
   Function.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to prepare
   the \code{\link[lcc]{plotBuilder_la}} function.

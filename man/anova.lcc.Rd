@@ -43,7 +43,7 @@ calling sequences for each fitted model object are printed with
 the rest of the output, being omitted if \code{verbose =
 FALSE}. Defaults to \code{FALSE}.}
 }
-\description{
+\value{
 If just one \code{lcc} model object is declared, a data
   frame with the numerator degrees of freedom, denominator degrees
   of freedom, F-values, and P-values for the fixed terms in the
@@ -52,6 +52,10 @@ If just one \code{lcc} model object is declared, a data
   (restricted) log-likelihood, the Akaike Information Criterion
   (AIC), and the Bayesian Information Criterion (BIC) of each object
   is returned.
+}
+\description{
+Compare Likelihoods of Fitted Models from an \code{lcc}
+  Object
 }
 \details{
 This function is an adaptation from the

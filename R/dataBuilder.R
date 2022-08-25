@@ -20,7 +20,7 @@
 ##'   the dataset for \code{lcc} objects
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @keywords internal

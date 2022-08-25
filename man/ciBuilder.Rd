@@ -3,6 +3,9 @@
 \name{ciBuilder}
 \alias{ciBuilder}
 \title{Internal Function to Prepare the \code{ciCompute} Function.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to prepare
   the \code{\link[lcc]{ciCompute}} function.

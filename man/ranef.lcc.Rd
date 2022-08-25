@@ -14,10 +14,12 @@ function.}
 \item{...}{optional arguments passed to the \code{ranef.lme}
 function.}
 }
-\description{
-Extract the estimated random effects at level i. A data
-  frame with rows given by the different groups at that level and
+\value{
+A data frame with rows given by the different groups at that level and
   columns given by the random effects.
+}
+\description{
+Extract the estimated random effects at level i.
 }
 \details{
 See methods for \code{\link{nlme}} objects to get more

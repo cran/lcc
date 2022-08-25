@@ -14,9 +14,12 @@ function.}
 \item{...}{optional arguments passed to the \code{vcov.lme}
 function.}
 }
-\description{
+\value{
 Returns the variance-covariance matrix of a fitted
   \code{lcc} model object.
+}
+\description{
+Extract Variance-Covariance Matrix of the Fixed Effects
 }
 \details{
 See methods for \code{\link{nlme}} objects to get more

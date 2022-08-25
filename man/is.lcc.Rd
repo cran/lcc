@@ -9,6 +9,9 @@ is.lcc(x)
 \arguments{
 \item{x}{An object to test}
 }
+\value{
+Returns if the object belongs to lcc class
+}
 \description{
 Reports whether x is a lcc object
 }

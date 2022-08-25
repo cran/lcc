@@ -4,6 +4,9 @@
 \alias{bootstrapSamples}
 \title{Internal functions to estimate fixed effects and variance
   components.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to estimate
   fixed effects and variance components for each bootstrap sample.

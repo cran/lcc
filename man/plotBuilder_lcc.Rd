@@ -4,6 +4,9 @@
 \alias{plotBuilder_lcc}
 \title{Internal Function to Produces a Longitudinal Concordance
   Correlation Plot.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to produces
   a longitudinal concordance correlation plot from fitted ans

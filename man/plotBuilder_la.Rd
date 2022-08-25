@@ -3,6 +3,9 @@
 \name{plotBuilder_la}
 \alias{plotBuilder_la}
 \title{Internal Function to Produces a Longitudinal Accuracy Plot.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to produces
   a longitudinal accuracy plot from fitted ans sampled values with

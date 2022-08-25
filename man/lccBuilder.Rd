@@ -4,13 +4,13 @@
 \alias{lccBuilder}
 \title{Internal Function to Estimate the Longitudinal Concordance
   Correlation.}
+\value{
+returns a vector or list containing the longitudinal
+  concordance correlation estimates.
+}
 \description{
 This is an internally called function used to estimate
   the longitudinal concordance correlation (LCC).
-}
-\details{
-returns a vector or list containing the longitudinal
-  concordance correlation estimates.
 }
 \author{
 Thiago de Paula Oliveira, \email{thiago.paula.oliveira@alumni.usp.br}

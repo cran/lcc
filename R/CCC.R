@@ -21,7 +21,7 @@
 ##'   the sampled concordance correlation values.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @importFrom stats var cov cor

@@ -14,6 +14,9 @@ function.}
 \item{...}{optional arguments passed to the \code{coef.lme}
 function.}
 }
+\value{
+Coefficients extracted from the model object.
+}
 \description{
 The fixed effects estimated and corresponding random
   effects estimates are obtained at subject levels less or equal to

@@ -17,10 +17,13 @@ function.}
 restricted log-likelihood is returned, else, if \code{FALSE}, the
 log-likelihood is returned.}
 }
-\description{
+\value{
 If \code{REML=TRUE}, the default, returns the
   restricted log-likelihood value of the linear mixed-effects model;
   else the log-likelihood value
+}
+\description{
+Extract Log-Likelihood of an \code{lcc} Object
 }
 \details{
 See methods for \code{\link{nlme}} objects to get more

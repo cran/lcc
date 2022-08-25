@@ -4,6 +4,9 @@
 \alias{Pearson}
 \title{Internal Function to Estimate the Sampled Pearson
   Correlation.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to estimate
   the sampled Pearson correlation.

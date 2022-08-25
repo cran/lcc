@@ -20,9 +20,12 @@ variance-covariance of the responses.}
 \item{...}{optional arguments passed to the \code{getVarCov}
 function.}
 }
-\description{
+\value{
 Returns the variance-covariance matrix of a fitted
   \code{lcc} model object.
+}
+\description{
+Extract Variance Components from a Fitted Model
 }
 \details{
 See methods for \code{\link{nlme}} objects to get more

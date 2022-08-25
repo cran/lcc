@@ -39,6 +39,8 @@ with a numerical value (in millimetres); see
 }
 \value{
 a list with components for each of the possible arguments.
+
+No return value, called for side effects
 }
 \description{
 The values supplied in the \code{plotControl()} call

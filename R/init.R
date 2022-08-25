@@ -22,23 +22,23 @@
 ##'   based method.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @importFrom nlme lme
 ##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @keywords internal
-init<-function(var.class, weights.form, REML, qf, qr, pdmat, dataset,
+init <- function(var.class, weights.form, REML, qf, qr, pdmat, dataset,
                resp, subject, method, time, gs, numCore){
-  resp<-resp
-  subject<-subject
-  method<-method
-  time<-time
+  resp <- resp
+  subject <- subject
+  method <- method
+  time <- time
   Data <- data.frame(dataset)
   Data <- try(rename.vars(Data, from = c(resp, subject, method, time),
     to = c("y", "ind", "FacA", "time"),
     info = FALSE), TRUE)
-  if(class(Data)=="try-error"){
+  if (inherits(Data,"try-error")) {
     stop("Please, verify the name of 'resp', 'subject', 'method', and 'time' variables",
          call.=FALSE)
   }
@@ -79,7 +79,7 @@ init<-function(var.class, weights.form, REML, qf, qr, pdmat, dataset,
   # Test for var.class and weigth form
   #---------------------------------------------------------------------
     if(is.null(var.class)==FALSE){
-      vc<-class(var.class())[1]
+      vc <- class(var.class())[1]
       if(is.null(weights.form)) stop("Please specify the 'weights.form' argument.",
                                      call.=FALSE)
       if(weights.form=="time.ident" || weights.form == "method") {
@@ -129,7 +129,7 @@ init<-function(var.class, weights.form, REML, qf, qr, pdmat, dataset,
   # Test for gs
   #---------------------------------------------------------------------
   if (is.null(gs) == FALSE) {
-    if (class(gs) != "character")  {
+    if (!inherits(gs, "character"))  {
       stop("Please specify the 'gs' as character string.
           Example: gs = 'Scanner'", call.= FALSE)
     }
@@ -158,7 +158,7 @@ init<-function(var.class, weights.form, REML, qf, qr, pdmat, dataset,
 ##'
 ##' @usage NULL
 ##'
-##' @author Code by Don MacQueen \email{macq\@llnl.gov}
+##' @author Code by Don MacQueen 
 ##'
 ##' @keywords internal
 
@@ -168,12 +168,12 @@ rename.vars <- function(data,from='',to='',info=TRUE) {
    dfn <- names(data)
 
    if ( length(from) != length(to)) {
-     cat('--------- from and to not same length ---------\n')
+     message('--------- from and to not same length ---------\n')
      stop()
    }
 
    if (length(dfn) < length(to)) {
-     cat('--------- too many new names ---------\n')
+     message('--------- too many new names ---------\n')
      stop()
    }
 
@@ -181,25 +181,27 @@ rename.vars <- function(data,from='',to='',info=TRUE) {
 
    frm.in <- from %in% dfn
    if (!all(frm.in) ) {
-     cat('---------- some of the from names not found in',dsn,'\n')
+     message('---------- some of the from names not found in',dsn,'\n')
      stop()
    }
 
    if (length(to) != length(unique(to))) {
-     cat('---------- New names not unique\n')
+     message('---------- New names not unique\n')
      stop()
    }
 
    dfn.new <- dfn
    dfn.new[chng] <- to
-   if (info) cat('\nChanging in',dsn)
+   if (info) {
+     message('\nChanging in',dsn)
+     }
    tmp <- rbind(from,to)
    dimnames(tmp)[[1]] <- c('From:','To:')
    dimnames(tmp)[[2]] <- rep('',length(from))
    if (info)
      {
        print(tmp,quote=FALSE)
-       cat("\n")
+       message("\n")
      }
    names(data) <- dfn.new
    data

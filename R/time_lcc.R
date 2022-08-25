@@ -32,6 +32,8 @@
 ##'   sequence. Generally, \code{n} between 30 and 50 is adequate.
 ##' @keywords internal
 ##'
+##' @return Return a regular sequence used  to create the time variable
+##'
 ##' @examples
 ##' data(hue)
 ##' attach(hue)
@@ -40,8 +42,8 @@
 ##'
 ##' @export
 
-time_lcc<-function(time,from, to, n){
-  tk.new<-unique(sort(c(seq.int(from=from, to=to, length.out = n),
-                        time)))
+time_lcc <- function(time,from, to, n){
+  tk.new <- unique(sort(c(seq.int(from = from, to = to, length.out = n),
+                          time)))
   return(tk.new)
 }

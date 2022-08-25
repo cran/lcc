@@ -22,7 +22,7 @@
 ##'
 ##' @usage NULL
 ##'
-##' @details returns a vector or list containing the longitudinal
+##' @return returns a vector or list containing the longitudinal
 ##'   concordance correlation estimates.
 ##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}

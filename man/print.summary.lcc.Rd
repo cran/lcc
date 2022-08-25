@@ -21,6 +21,9 @@ default, \code{NULL}.}
 
 \item{...}{further arguments passed to \code{\link{print}}.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Information summarizing the fitted longitudinal
   concordance correlation is printed. This includes the AIC, BIC,

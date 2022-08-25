@@ -23,6 +23,9 @@ used, so only the first character needs to be provided.}
 \item{...}{optional arguments passed to the \code{residuals.lme}
 function.}
 }
+\value{
+Return no value, called for side effects
+}
 \description{
 Extract the residulas from the model used to estimate
   the longitudinal concordance correlation function.

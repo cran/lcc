@@ -21,7 +21,7 @@
 ##'   the non-parametric confidence intervals for LCC.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @importFrom stats quantile sd qnorm
@@ -38,14 +38,14 @@ lcc_intervals<-function(rho, tk.plot, tk.plot2, ldb, model, ci,
     for(i in seq_len(length(LCC_Boot))) {
       if(is.null(LCC_Boot[[i]])==FALSE){
         LCC_IC[,i] <- LCC_Boot[[i]]
-      }else(cat(i,"\n"))
+      }else(message(i,"\n"))
 }
     ENV.LCC <- apply(LCC_IC, 1, quantile, probs=c(alpha/2,1-alpha/2))
   }else{
     for(i in seq_len(length(LCC_Boot))) {
       if(is.null(LCC_Boot[[i]])==FALSE){
         LCC_IC[,i] <- ZFisher(LCC_Boot[[i]])
-      }else(cat(i,"\n"))
+      }else(message(i,"\n"))
     }
     SE<-apply(LCC_IC, 1, sd)
     mean<-apply(LCC_IC, 1, mean)
@@ -69,7 +69,7 @@ lcc_intervals<-function(rho, tk.plot, tk.plot2, ldb, model, ci,
        for(j in seq_len(length(LCC_Boot))) {
         if(is.null(LCC_Boot[[j]])==FALSE){
           LCC_IC[[i]][,j] <- LCC_Boot[[j]][[i]]
-        }else(cat(i,"\n"))
+        }else(message(i,"\n"))
       }
        ENV.LCC[[i]] <- apply(LCC_IC[[i]], 1, quantile,
                              probs=c(alpha/2,1-alpha/2))
@@ -77,7 +77,7 @@ lcc_intervals<-function(rho, tk.plot, tk.plot2, ldb, model, ci,
         for(j in seq_len(length(LCC_Boot))) {
           if(is.null(LCC_Boot[[j]])==FALSE){
             LCC_IC[[i]][,j] <- ZFisher(LCC_Boot[[j]][[i]])
-          }else(cat(i,"\n"))
+          }else(message(i,"\n"))
         }
         SE_LCC[[i]]<-apply(LCC_IC[[i]], 1, sd)
         mean_LCC[[i]]<-apply(LCC_IC[[i]], 1, mean)

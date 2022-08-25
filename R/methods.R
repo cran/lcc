@@ -23,6 +23,7 @@
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##' @keywords internal
+##' @return Returns if the object belongs to lcc class
 ##' @export
 is.lcc <- function(x) inherits(x, "lcc")
 
@@ -50,7 +51,7 @@ is.lcc <- function(x) inherits(x, "lcc")
 ##'   default, \code{NULL}.
 ##'
 ##' @param ... further arguments passed to \code{{\link{print}}}.
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##' @seealso \code{\link[lcc]{lcc}}, \code{\link[lcc]{summary.lcc}}
@@ -67,28 +68,28 @@ is.lcc <- function(x) inherits(x, "lcc")
 ##' @export
 
 print.lcc <- function(x, digits = NULL, ...){
-  cat("Longitudinal concordance correlation model fit by ")
-  cat( if(x[1]$model$method == "REML") "REML\n" else "maximum likelihood\n")
+  message("Longitudinal concordance correlation model fit by ")
+  message( if(x[1]$model$method == "REML") "REML\n" else "maximum likelihood\n")
   AIC <- AIC(x[1]$model)
   BIC <- BIC(x[1]$model)
   logLik <- c(x[1]$model$logLik)
   print(data.frame(AIC, BIC, logLik, row.names = " "), digits = digits, ...)
-  cat("\n")
+  message("\n")
   print(x$Summary.lcc$fitted, digits =  digits,  ...)
   dd <- x$model$dims
   Ngrps <- dd$ngrps[1:dd$Q]
-  cat("\n")
-  cat("Number of Observations:", dd[["N"]])
-  cat("\nNumber of Groups: ")
+  message("\n")
+  message("Number of Observations:", dd[["N"]])
+  message("\nNumber of Groups: ")
   if ((lNgrps <- length(Ngrps)) == 1) {	# single nesting
-    cat(Ngrps,"\n")
+    message(Ngrps,"\n")
   } else {				# multiple nesting
     sNgrps <- 1:lNgrps
     aux <- rep(names(Ngrps), sNgrps)
     aux <- split(aux, array(rep(sNgrps, lNgrps),
                             c(lNgrps, lNgrps))[!lower.tri(diag(lNgrps))])
     names(Ngrps) <- unlist(lapply(aux, paste, collapse = " %in% "))
-    cat("\n")
+    message("\n")
     print(rev(Ngrps),  digits = digits, ...)
   }
   invisible(x)
@@ -125,7 +126,8 @@ print.lcc <- function(x, digits = NULL, ...){
 ##'   default, \code{NULL}.
 ##'
 ##' @param ... not used.
-##'
+##' 
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##' @seealso \code{\link[lcc]{lcc}}, \code{\link[lcc]{summary.lcc}},
@@ -147,7 +149,7 @@ print.lcc <- function(x, digits = NULL, ...){
 ##' @export
 
 fitted.lcc <- function(object, type = "lcc", digits = NULL, ...){
-  if(class(object)!="lcc") stop("Object must inherit from class \"lcc\"",
+  if (!inherits(object, "lcc")) stop("Object must inherit from class \"lcc\"",
                                 call.=FALSE)
   if(missing(type)) type="lcc"
   if(object$plot_info$components == FALSE && type == "lpc" ||
@@ -160,7 +162,7 @@ fitted.lcc <- function(object, type = "lcc", digits = NULL, ...){
                  "lcc" = cat( "Fitted longitudinal concordance correlation function", "\n"),
                  "lpc" = cat( "Fitted longitudinal Pearson correlation function", "\n"),
                  "la"  = cat( "Fitted longitudinal accuracy function", "\n"))
-    cat("\n")
+    message("\n")
     fittedBuilder(object = object, type = type)
   }else{
     stop("Available 'type' are 'lcc',  'lpc', or 'la'", call.=FALSE)
@@ -205,7 +207,7 @@ fitted.lcc <- function(object, type = "lcc", digits = NULL, ...){
 ##'
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
-##'
+##' @return No return value, called for side effects
 ##' @seealso \code{\link{summary.lcc}}, \code{\link{lccPlot}},
 ##'   \code{\link[lcc]{lcc}}
 ##'
@@ -221,27 +223,27 @@ fitted.lcc <- function(object, type = "lcc", digits = NULL, ...){
 ##' @export
 
 print.summary.lcc <- function(x, verbose =  FALSE, digits = NULL, ...){
-  if(class(x)[2] == "lcc"){
-    cat("Longitudinal concordance correlation model fit by ")
-    cat( if(x$model$method == "REML") "REML\n" else "maximum likelihood\n")
+  if (inherits(x, "lcc")) {
+    message("Longitudinal concordance correlation model fit by ")
+    message( if(x$model$method == "REML") "REML\n" else "maximum likelihood\n")
     AIC <- AIC(x$model)
     BIC <- BIC(x$model)
     logLik <- c(x$model$logLik)
     print(data.frame(AIC, BIC, logLik, row.names = " "), digits = digits, ...)
-    cat("\n")
+    message("\n")
     gof <- x$gof
-    cat(paste0(" gof: ", round(gof, 4)), "\n")
-    cat("\n")
-    if(class(x$comp) == "character"){
-      if(is.null(x$info$ENV.LCC)){
-        cat(x$comp, "\n")
+    message(paste0(" gof: ", round(gof, 4)), "\n")
+    message("\n")
+    if (inherits(x$comp, "character")) {
+      if (is.null(x$info$ENV.LCC)) {
+        message(x$comp, "\n")
         fitted <- x$fitted
         print(fitted, digits = digits,  ...)
       }else{
-        cat(paste0(" Lower and upper bound of ", (1-x$plot_info$alpha)*100,"%"), "bootstrap confidence interval", "\n")
-        cat(" Number of bootstrap samples: ", x$plot_info$nboot, "\n")
-        cat("\n")
-        cat(x$comp, "\n")
+        message(paste0(" Lower and upper bound of ", (1-x$plot_info$alpha)*100,"%"), "bootstrap confidence interval", "\n")
+        message(" Number of bootstrap samples: ", x$plot_info$nboot, "\n")
+        message("\n")
+        message(x$comp, "\n")
         fitted <- x$fitted
         print(fitted, digits = digits,  ...)
       }
@@ -249,52 +251,52 @@ print.summary.lcc <- function(x, verbose =  FALSE, digits = NULL, ...){
       summ <- sum(sapply(x$comp, length))
       if(is.null(x$info$ENV.LCC)){
         for(i in 1:summ){
-          cat(x$comp[[i]], "\n")
+          message(x$comp[[i]], "\n")
           fitted <- x$fitted
           print(fitted[[i]],  digits = digits, ...)
-          cat("\n")
+          message("\n")
         }
       }else{
-        cat(paste0(" Lower and upper bound of ", (1-x$info$alpha)*100,"%"), "bootstrap confidence interval", "\n")
-        cat(" Number of bootstrap samples: ", x$info$nboot, "\n")
-        cat("\n")
+        message(paste0(" Lower and upper bound of ", (1-x$info$alpha)*100,"%"), "bootstrap confidence interval", "\n")
+        message(" Number of bootstrap samples: ", x$info$nboot, "\n")
+        message("\n")
         for(i in 1:summ){
-          cat(x$comp[[i]], ": LCC", "\n")
+          message(x$comp[[i]], ": LCC", "\n")
           fitted <- x$fitted
           print(fitted$LCC[[i]],  digits = digits, ...)
-          cat("\n")
-          cat(x$comp[[i]], ": LPC", "\n")
+          message("\n")
+          message(x$comp[[i]], ": LPC", "\n")
           print(fitted$LPC[[i]],  digits = digits, ...)
-          cat("\n")
-          cat(x$comp[[i]], ": LA", "\n")
+          message("\n")
+          message(x$comp[[i]], ": LA", "\n")
           print(fitted$LA[[i]],  digits = digits, ...)
-          cat("\n", "\n")
+          message("\n", "\n")
         }
       }
     }
   }else{
-    if(class(x)[2] == "model"){
+    if (inherits(x, "model")) {
       dd <- x$dims
       verbose <- verbose || attr(x, "verbose")
-      cat( "Linear mixed-effects model fit by " )
-      cat( if(x$method == "REML") "REML\n" else "maximum likelihood\n")
+      message( "Linear mixed-effects model fit by " )
+      message( if(x$method == "REML") "REML\n" else "maximum likelihood\n")
       ##  method <- x$method
-      cat(" Data:", deparse( x$call$data ), "\n")
+      message(" Data:", deparse( x$call$data ), "\n")
       if (!is.null(x$call$subset)) {
-        cat("  Subset:", deparse(asOneSidedFormula(x$call$subset)[[2L]]),"\n")
+        message("  Subset:", deparse(asOneSidedFormula(x$call$subset)[[2L]]),"\n")
       }
       print(data.frame(AIC = x$AIC, BIC = x$BIC, logLik = c(x$logLik),
                        row.names = " "), ...)
-      if (verbose) { cat("Convergence at iteration:",x$numIter,"\n") }
-      cat("\n")
+      if (verbose) { message("Convergence at iteration:",x$numIter,"\n") }
+      message("\n")
       print(summary(x$modelStruct), sigma = x$sigma,
             reEstimates = x$coef$random, verbose = verbose, ...)
-      cat("Fixed effects: ")
+      message("Fixed effects: ")
       fixF <- x$call$fixed
       if (inherits(fixF, "formula") || is.call(fixF)) {
-        cat(deparse(x$call$fixed), "\n")
+        message(deparse(x$call$fixed), "\n")
       } else {
-        cat(deparse(lapply(fixF, function(el) as.name(deparse(el)))), "\n")
+        message(deparse(lapply(fixF, function(el) as.name(deparse(el)))), "\n")
       }
       ## fixed effects t-table and correlations
       xtTab <- as.data.frame(x$tTable)
@@ -313,20 +315,20 @@ print.summary.lcc <- function(x, verbose =  FALSE, digits = NULL, ...){
         class(corr) <- "correlation"
         print(corr, title = " Correlation:", ...)
       }
-      cat("\nStandardized Within-Group Residuals:\n")
+      message("\nStandardized Within-Group Residuals:\n")
       print(x$residuals, ...)
-      cat("\nNumber of Observations:",x$dims[["N"]])
-      cat("\nNumber of Groups: ")
+      message("\nNumber of Observations:",x$dims[["N"]])
+      message("\nNumber of Groups: ")
       Ngrps <- dd$ngrps[1:dd$Q]
       if ((lNgrps <- length(Ngrps)) == 1) {	# single nesting
-        cat(Ngrps,"\n")
+        message(Ngrps,"\n")
       } else {				# multiple nesting
         sNgrps <- 1:lNgrps
         aux <- rep(names(Ngrps), sNgrps)
         aux <- split(aux, array(rep(sNgrps, lNgrps),
                                 c(lNgrps, lNgrps))[!lower.tri(diag(lNgrps))])
         names(Ngrps) <- unlist(lapply(aux, paste, collapse = " %in% "))
-        cat("\n")
+        message("\n")
         print(rev(Ngrps), ...)
       }
       invisible(x)
@@ -389,7 +391,6 @@ print.summary.lcc <- function(x, verbose =  FALSE, digits = NULL, ...){
 ##' \code{type = model} is used. Defaults to FALSE.
 ##'
 ##' @param ...  not used.
-##'
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -411,7 +412,7 @@ print.summary.lcc <- function(x, verbose =  FALSE, digits = NULL, ...){
 summary.lcc <- function(object, type, adjustSigma = TRUE,
                         verbose = FALSE, ...)
 {
-  if(class(object)!="lcc") stop("Object must inherit from class \"lcc\"",
+  if (!inherits(object, "lcc")) stop("Object must inherit from class \"lcc\"",
                                 call.=FALSE)
   if(missing(type)) type <- "model"
   if(type=="model" || type=="lcc"){
@@ -464,7 +465,7 @@ summary.lcc <- function(object, type, adjustSigma = TRUE,
       obj$BIC <- BIC(aux)
       obj$AIC <- AIC(aux)
       structure(obj, verbose = verbose, oClass = class(obj),
-                class = c("summary.lcc", "model", class(object)))
+                class = c("summary.lcc", "model", class(obj)))
     }
   }else {
     stop("Available 'type' are lcc or model", call.=FALSE)
@@ -544,7 +545,7 @@ summary.lcc <- function(object, type, adjustSigma = TRUE,
 ##'   envelopes are obtained from package hnp (Moral et al.,  2018).
 ##'
 ##'   Code partially adapted from \code{\link[stats]{plot.lm}}.
-##'
+##' @return Return plots for conditional error and random effects from the linear mixed-effects
 ##' @importFrom hnp hnp
 ##'
 ##' @importFrom nlme getVarCov ranef
@@ -584,6 +585,8 @@ plot.lcc <- function(x, which = c(1L:6L),
            label.pos = c(4, 2), cex.id = 0.75, cex.caption = 1,
            cex.oma.man = 1.25, ...)
   {
+    oldpar <- par(no.readonly = TRUE)
+    on.exit(par(oldpar))
     if (!is.lcc(x))
       stop("use only with \"lcc\" objects", call. = FALSE)
     if(!is.numeric(which) || any(which < 1) || any(which > 6))
@@ -752,7 +755,7 @@ plot.lcc <- function(x, which = c(1L:6L),
 ##'
 ##' @details See methods for \code{\link{nlme}} objects to get more
 ##'   details.
-##'
+##' @return Coefficients extracted from the model object.
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -802,7 +805,7 @@ coef.lcc <- function(object, ...) {
 ##' @method vcov lcc
 ##' @aliases vcov.lcc
 ##'
-##' @description Returns the variance-covariance matrix of a fitted
+##' @return Returns the variance-covariance matrix of a fitted
 ##'   \code{lcc} model object.
 ##'
 ##' @param object an object inheriting from class \code{lcc},
@@ -856,7 +859,7 @@ vcov.lcc <- function(object, ...) {
 ##' @method getVarCov lcc
 ##' @aliases getVarCov.lcc
 ##'
-##' @description Returns the variance-covariance matrix of a fitted
+##' @return Returns the variance-covariance matrix of a fitted
 ##'   \code{lcc} model object.
 ##'
 ##' @param obj an object inheriting from class \code{lcc}, representing
@@ -938,7 +941,7 @@ getVarCov.lcc <- function(obj, type = "random.effects", ...) {
 ##'
 ##' @details See methods for \code{\link{nlme}} objects to get more
 ##'   details.
-##'
+##' @return Return no value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -983,7 +986,7 @@ residuals.lcc <- function(object, type = "response", ...) {
 ##' @param ... optional arguments passed to the \code{AIC}
 ##'   function.
 ##'
-##' @details A numeric value with the corresponding AIC or BIC
+##' @return A numeric value with the corresponding AIC or BIC
 ##'   value. See methods for \code{\link{AIC}} objects to get more
 ##'   details.
 ##'
@@ -1082,8 +1085,9 @@ BIC.lcc <- function (object, ...)
 ##' @method ranef lcc
 ##' @aliases ranef.lcc
 ##'
-##' @description Extract the estimated random effects at level i. A data
-##'   frame with rows given by the different groups at that level and
+##' @description Extract the estimated random effects at level i. 
+##' 
+##' @return A data frame with rows given by the different groups at that level and
 ##'   columns given by the random effects.
 ##'
 ##' @param object an object inheriting from class \code{lcc},
@@ -1135,7 +1139,7 @@ ranef.lcc <- function(object, ...) {
 ##' @method logLik lcc
 ##' @aliases logLik.lcc
 ##'
-##' @description If \code{REML=TRUE}, the default, returns the
+##' @return If \code{REML=TRUE}, the default, returns the
 ##'   restricted log-likelihood value of the linear mixed-effects model;
 ##'   else the log-likelihood value
 ##'
@@ -1185,7 +1189,7 @@ logLik.lcc <- function(object, ..., REML) {
 ##' @method anova lcc
 ##' @aliases anova.lcc
 ##'
-##' @description If just one \code{lcc} model object is declared, a data
+##' @return If just one \code{lcc} model object is declared, a data
 ##'   frame with the numerator degrees of freedom, denominator degrees
 ##'   of freedom, F-values, and P-values for the fixed terms in the
 ##'   model. Otherwise, when multiple \code{lcc} fitted objects are
@@ -1436,7 +1440,7 @@ anova.lcc <- function (object, ..., test = TRUE, type = c("sequential", "margina
 ##'
 ##' @details Modified from \code{\link{anova.lme}}. For more details see
 ##' methods for \code{\link{nlme}}.
-##'
+##' @return Return no value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'

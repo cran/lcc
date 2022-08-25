@@ -3,6 +3,9 @@
 \name{laBootstrap}
 \alias{laBootstrap}
 \title{Internal functions to generate longitudinal accuracy samples.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to generate
   longitudinal caccuracy samples.

@@ -22,9 +22,8 @@
 ##'
 ##' @usage NULL
 ##'
-##' @details returns a vector or list containing the longitudinal
+##' @return returns a vector or list containing the longitudinal
 ##'   concordance correlation estimates.
-##'
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @keywords internal
@@ -34,7 +33,7 @@ lccBuilder <- function(G, diffbeta, tk, q_r, q_f, g, sig2_epsilon, delta,
   Tk_f <- sapply(0:q_f, function(x) tk^x)
   S2 <- try((as.matrix(Tk_f[,c(1:(length(diffbeta)))]) %*% (diffbeta))^2,
             silent = TRUE)
-  if(all(class(S2) != "try-error")) {
+  if (!inherits(S2, "try-error")) {
     tGt <- diag(Tk_r %*% G %*% t(Tk_r))
     varcomp <- summary(model)
     var.f <- class(varcomp$modelStruct$varStruct)[1]
@@ -71,7 +70,7 @@ lccBuilder <- function(G, diffbeta, tk, q_r, q_f, g, sig2_epsilon, delta,
       }
     }
     if(var.f == "NULL"){
-      rho<-list(tGt / (tGt + sig2_epsilon + 0.5*S2),NA)
+      rho <- list(tGt / (tGt + sig2_epsilon + 0.5*S2),NA)
     }
     return(rho)
   }else{

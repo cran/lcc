@@ -3,6 +3,9 @@
 \name{laWrapper}
 \alias{laWrapper}
 \title{Internal Function to Prepare the \code{laBuilder} Function}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to prepare the \code{\link[lcc]{laBuilder}} function.
 }

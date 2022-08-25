@@ -16,6 +16,9 @@ time_lcc(time, from, to, n)
 \item{n}{an integer specifying the desired length of the
 sequence. Generally, \code{n} between 30 and 50 is adequate.}
 }
+\value{
+Return a regular sequence used  to create the time variable
+}
 \description{
 An list specifying control arguments to generate a
   regular sequence for the time variable returned by the function

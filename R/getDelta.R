@@ -20,7 +20,7 @@
 ##' @description This is an internally called function used to extract
 ##'   variance components estimate of \eqn{\Sigma} matrix based on
 ##'   specified structure.
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br} and Rafael de Andrade Moral,
 ##'   \email{rafael_moral@@yahoo.com.br}

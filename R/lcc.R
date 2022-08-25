@@ -30,7 +30,7 @@
 ##' lcc(data, resp, subject, method, time, interaction, qf,
 ##'     qr, covar, gs, pdmat, var.class, weights.form, time_lcc, ci,
 ##'     percentileMet, alpha, nboot, show.warnings, components,
-##'     REML, lme.control,  numCore)
+##'     REML, lme.control, numCore)
 ##'
 ##' @param data an object of class \code{data.frame}.
 ##'
@@ -201,7 +201,7 @@
 ##'
 ##' @examples
 ##' ## Estimating longitudinal Pearson correlation and longitudinal
-##' #accuracy
+##' ## accuracy
 ##' fm2 <- update(fm1, components = TRUE)
 ##' summary(fm2)
 ##' lccPlot(fm2) +
@@ -211,7 +211,6 @@
 ##'  theme_bw()
 ##'
 ##' @examples
-##' \dontrun{
 ##' ## A grid of points as the Time variable for prediction
 ##' fm3 <- update(fm2, time_lcc = list(from = min(hue$Time),
 ##'            to = max(hue$Time), n=40))
@@ -221,11 +220,11 @@
 ##'  geom_hline(yintercept = 1, linetype = "dashed") +
 ##'  scale_x_continuous(breaks = seq(1,max(hue$Time),2)) +
 ##'  theme_bw()
-##' }
 ##'
 ##' @examples
+##' \dontrun{
 ##' ## Including an exponential variance function using time as a
-##' #covariate.
+##' ## covariate.
 ##' fm4 <- update(fm2,time_lcc = list(from = min(hue$Time),
 ##'               to = max(hue$Time), n=30), var.class=varExp,
 ##'               weights.form="time")
@@ -240,18 +239,14 @@
 ##' lccPlot(fm4, type = "la") +
 ##'  geom_hline(yintercept = 1, linetype = "dashed")
 ##'
-##' @examples
-##' \dontrun{
 ##' ## Non-parametric confidence interval with 500 bootstrap samples
 ##' fm5 <- update(fm1, ci = TRUE, nboot = 500)
 ##' summary(fm5)
 ##' lccPlot(fm5) +
 ##'  geom_hline(yintercept = 1, linetype = "dashed")
-##' }
+##' 
 ##'
-##' @examples
 ##' ## Considering three methods of color evaluation
-##' \dontrun{
 ##' data(simulated_hue)
 ##' attach(simulated_hue)
 ##' fm6 <- lcc(data = simulated_hue, subject = "Fruit",
@@ -263,12 +258,9 @@
 ##' lccPlot(fm6, type="lpc", scales = "free")
 ##' lccPlot(fm6, type="la", scales = "free")
 ##' detach(simulated_hue)
-##' }
 ##'
-##' @examples
 ##' ## Including an additional covariate in the linear predictor
 ##' ## (randomized block design)
-##' \dontrun{
 ##' data(simulated_hue_block)
 ##' attach(simulated_hue_block)
 ##' fm7 <- lcc(data = simulated_hue_block, subject = "Fruit",
@@ -278,17 +270,13 @@
 ##' summary(fm7)
 ##' lccPlot(fm7, scales="free")
 ##' detach(simulated_hue_block)
-##' }
 ##'
-##' @examples
 ##' ## Testing interaction effect between time and method
 ##' fm8 <- update(fm1, interaction = FALSE)
 ##' anova(fm1, fm8)
 ##'
-##' @examples
-##' \dontrun{
 ##' ## Using parallel computing with 3 cores, and a set.seed(123)
-##' to verify model reproducibility.
+##' ## to verify model reproducibility.
 ##' set.seed(123)
 ##' fm9 <- lcc(data = hue, subject = "Fruit", resp = "H_mean",
 ##'               method = "Method", time = "Time", qf = 2, qr = 2,
@@ -301,9 +289,9 @@
 ##'               ci=TRUE, nboot = 30, numCore = 3)
 ##'
 ##' ## Verifying if both fitted values and confidence intervals
-##' are identical
+##' ## are identical
 ##' identical(fm9$Summary.lcc$fitted,fm10$Summary.lcc$fitted)
-##' }
+##'}
 ##'
 ##' @export
 lcc <- function(data, resp, subject, method, time,
@@ -318,13 +306,13 @@ lcc <- function(data, resp, subject, method, time,
   #---------------------------------------------------------------------
   # The init function is used to check the declared arguments
   #---------------------------------------------------------------------
-  Init<-init(var.class = var.class, weights.form = weights.form,
-             REML = REML, qf = qf, qr = qr, pdmat = pdmat,
-             dataset = data, resp = resp, subject = subject,
-             method = method, time = time, gs = gs, numCore = numCore)
-  pdmat<-Init$pdmat
-  MethodREML<-Init$MethodREML
-  var.class<-Init$var.class
+  Init <- init(var.class = var.class, weights.form = weights.form,
+               REML = REML, qf = qf, qr = qr, pdmat = pdmat,
+               dataset = data, resp = resp, subject = subject,
+               method = method, time = time, gs = gs, numCore = numCore)
+  pdmat <- Init$pdmat
+  MethodREML <- Init$MethodREML
+  var.class <- Init$var.class
   #---------------------------------------------------------------------
   # Getting relevant model information
   #---------------------------------------------------------------------
@@ -340,24 +328,24 @@ lcc <- function(data, resp, subject, method, time,
   #---------------------------------------------------------------------
   # Verifying convergence
   #---------------------------------------------------------------------
-  if(model.info$wcount == "1") {
-    opt <- options(show.error.messages=FALSE)
+  if (model.info$wcount == "1") {
+    opt <- options(show.error.messages = FALSE)
     on.exit(options(opt))
-    stop(message(model.info$message), call.=FALSE)
+    stop(message(model.info$message), call. = FALSE)
   }
   #---------------------------------------------------------------------
   model <- model.info$model
   q_f <- qf
   q_r <- qr
-  x<-NULL
-  y<-NULL
+  x <- NULL
+  y <- NULL
   lme.control <- model.info$lme.control
-  MethodREML<-model.info$method.init
+  MethodREML <- model.info$method.init
   tk <- sort(unique(model.info$data$time))
   lev.lab <- levels(model.info$data$method)
   lev.method <- length(lev.lab)
-  lev.lab<-unique(merge(rep("method",q_f),lev.lab))
-  lev.lab<-transform(lev.lab,newcol=paste(x,y, sep = ""))
+  lev.lab <- unique(merge(rep("method",q_f),lev.lab))
+  lev.lab <- transform(lev.lab,newcol = paste(x,y, sep = ""))
   fx <- fixef(model)
   pat <- list()
   #---------------------------------------------------------------------
@@ -367,26 +355,26 @@ lcc <- function(data, resp, subject, method, time,
   for(i in 2:lev.method) pat[[i-1]] <- grep(lev.lab$newcol[i], names(fx))
   beta1 <- fx[-unlist(pat)]
   betas <- list()
-  for(i in 2:lev.method) betas[[i-1]] <- - fx[pat[[i-1]]]
+  for (i in 2:lev.method) betas[[i-1]] <- -fx[pat[[i-1]]]
   #---------------------------------------------------------------------
   # Internal function for calculations and graphs
   #---------------------------------------------------------------------
-  lcc.int_full<-lccInternal(model = model, q_f = q_f, q_r=q_r,
-                            interaction = interaction, tk = tk,
-                            covar = covar,
-                            pdmat = pdmat, diffbeta = betas,
-                            time_lcc = time_lcc, ci = ci,
-                            percentileMet = percentileMet, alpha = alpha,
-                            nboot = nboot, labels = lev.lab,
-                            var.class = var.class, weights.form = weights.form,
-                            show.warnings = show.warnings, components =
-                                                             components,
-                            lme.control = lme.control, method.init =
-                                                         MethodREML,
-                            numCore = numCore)
-  lcc<-list("model" = model, "Summary.lcc" = lcc.int_full[[1]],
-            "data" = data, "plot_info" = lcc.int_full[-1],
-            "call" = lcc_call)
-  class(lcc)<-"lcc"
+  lcc.int_full <- lccInternal(model = model, q_f = q_f, q_r=q_r,
+                              interaction = interaction, tk = tk,
+                              covar = covar,
+                              pdmat = pdmat, diffbeta = betas,
+                              time_lcc = time_lcc, ci = ci,
+                              percentileMet = percentileMet, alpha = alpha,
+                              nboot = nboot, labels = lev.lab,
+                              var.class = var.class, weights.form = weights.form,
+                              show.warnings = show.warnings, components =
+                                                               components,
+                              lme.control = lme.control, method.init =
+                                                           MethodREML,
+                              numCore = numCore)
+  lcc <- list("model" = model, "Summary.lcc" = lcc.int_full[[1]],
+              "data" = data, "plot_info" = lcc.int_full[-1],
+              "call" = lcc_call)
+  class(lcc) <- "lcc"
   return(invisible(lcc))
 }

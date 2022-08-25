@@ -21,15 +21,15 @@ function.}
 parameters in the fitted model; the default \code{k = 2} is the
 classical AIC.}
 }
+\value{
+A numeric value with the corresponding AIC or BIC
+  value. See methods for \code{\link{AIC}} objects to get more
+  details.
+}
 \description{
 Calculate the Akaike's 'An Information Criterion' or
   the BIC or SBC (Schwarz's Bayesian criterion) for an object of
   class \code{lcc}.
-}
-\details{
-A numeric value with the corresponding AIC or BIC
-  value. See methods for \code{\link{AIC}} objects to get more
-  details.
 }
 \examples{
 \dontrun{

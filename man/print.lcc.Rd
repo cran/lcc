@@ -19,6 +19,8 @@ default, \code{NULL}.}
 }
 \value{
 an object inheriting from class \code{print.lcc}.
+
+No return value, called for side effects
 }
 \description{
 Prints information about the longitudinal concordance

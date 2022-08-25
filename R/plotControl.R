@@ -44,6 +44,8 @@
 ##' @param ylab title for the \code{y} axis. Default is
 ##'   \code{"LCC"}.
 ##'
+##' @return No return value, called for side effects
+##' 
 ##' @author Thiago de Paula Oliveira, \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
 ##' @import ggplot2

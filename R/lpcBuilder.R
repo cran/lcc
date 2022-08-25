@@ -20,7 +20,7 @@
 ##' @description This is an internally called function used to estimate
 ##'   the longitudinal Pearson correlation (LPC).
 ##'
-##' @details returns a vector or list containing the longitudinal
+##' @return returns a vector or list containing the longitudinal
 ##'   Pearson correlation estimates.
 ##'
 ##' @usage NULL

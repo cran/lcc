@@ -4,6 +4,9 @@
 \alias{lpcBootstrap}
 \title{Internal functions to generate longitudinal Pearson
   correlation samples.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to generate
   longitudinal Pearson correlation samples.

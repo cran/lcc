@@ -9,7 +9,7 @@
 lcc(data, resp, subject, method, time, interaction, qf,
     qr, covar, gs, pdmat, var.class, weights.form, time_lcc, ci,
     percentileMet, alpha, nboot, show.warnings, components,
-    REML, lme.control,  numCore)
+    REML, lme.control, numCore)
 }
 \arguments{
 \item{data}{an object of class \code{data.frame}.}
@@ -165,7 +165,7 @@ lccPlot(fm1) +
  scale_x_continuous(breaks = seq(1,max(hue$Time),2))
 
 ## Estimating longitudinal Pearson correlation and longitudinal
-#accuracy
+## accuracy
 fm2 <- update(fm1, components = TRUE)
 summary(fm2)
 lccPlot(fm2) +
@@ -174,7 +174,6 @@ lccPlot(fm2) +
  scale_x_continuous(breaks = seq(1,max(hue$Time),2)) +
  theme_bw()
 
-\dontrun{
 ## A grid of points as the Time variable for prediction
 fm3 <- update(fm2, time_lcc = list(from = min(hue$Time),
            to = max(hue$Time), n=40))
@@ -184,10 +183,10 @@ lccPlot(fm3) +
  geom_hline(yintercept = 1, linetype = "dashed") +
  scale_x_continuous(breaks = seq(1,max(hue$Time),2)) +
  theme_bw()
-}
 
+\dontrun{
 ## Including an exponential variance function using time as a
-#covariate.
+## covariate.
 fm4 <- update(fm2,time_lcc = list(from = min(hue$Time),
               to = max(hue$Time), n=30), var.class=varExp,
               weights.form="time")
@@ -202,16 +201,14 @@ lccPlot(fm4, type = "lpc") +
 lccPlot(fm4, type = "la") +
  geom_hline(yintercept = 1, linetype = "dashed")
 
-\dontrun{
 ## Non-parametric confidence interval with 500 bootstrap samples
 fm5 <- update(fm1, ci = TRUE, nboot = 500)
 summary(fm5)
 lccPlot(fm5) +
  geom_hline(yintercept = 1, linetype = "dashed")
-}
+
 
 ## Considering three methods of color evaluation
-\dontrun{
 data(simulated_hue)
 attach(simulated_hue)
 fm6 <- lcc(data = simulated_hue, subject = "Fruit",
@@ -223,11 +220,9 @@ lccPlot(fm6, scales = "free")
 lccPlot(fm6, type="lpc", scales = "free")
 lccPlot(fm6, type="la", scales = "free")
 detach(simulated_hue)
-}
 
 ## Including an additional covariate in the linear predictor
 ## (randomized block design)
-\dontrun{
 data(simulated_hue_block)
 attach(simulated_hue_block)
 fm7 <- lcc(data = simulated_hue_block, subject = "Fruit",
@@ -237,15 +232,13 @@ fm7 <- lcc(data = simulated_hue_block, subject = "Fruit",
 summary(fm7)
 lccPlot(fm7, scales="free")
 detach(simulated_hue_block)
-}
 
 ## Testing interaction effect between time and method
 fm8 <- update(fm1, interaction = FALSE)
 anova(fm1, fm8)
 
-\dontrun{
 ## Using parallel computing with 3 cores, and a set.seed(123)
-to verify model reproducibility.
+## to verify model reproducibility.
 set.seed(123)
 fm9 <- lcc(data = hue, subject = "Fruit", resp = "H_mean",
               method = "Method", time = "Time", qf = 2, qr = 2,
@@ -258,7 +251,7 @@ fm10 <- lcc(data = hue, subject = "Fruit", resp = "H_mean",
               ci=TRUE, nboot = 30, numCore = 3)
 
 ## Verifying if both fitted values and confidence intervals
-are identical
+## are identical
 identical(fm9$Summary.lcc$fitted,fm10$Summary.lcc$fitted)
 }
 

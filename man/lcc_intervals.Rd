@@ -4,6 +4,9 @@
 \alias{lcc_intervals}
 \title{Internal Functions to Compute the Non-Parametric Confidence
   Intervals for LCC.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to compute
   the non-parametric confidence intervals for LCC.

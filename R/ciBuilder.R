@@ -20,7 +20,7 @@
 ##'   the \code{\link[lcc]{ciCompute}} function.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -34,15 +34,15 @@ ciBuilder<-function(model, nboot, q_f, q_r, interaction, covar, pdmat,
   # Computing the bootstrap samples for calculate the confidence
   # intervals
   #---------------------------------------------------------------------
-  Models<- bootstrapSamples(nboot = nboot, model = model, q_f = q_f,
-                            q_r = q_r, interaction = interaction,
-                            covar = covar, pdmat = pdmat,
-                            var.class = var.class,
-                            weights.form = weights.form,
-                            show.warnings = show.warnings,
-                            lme.control = lme.control,
-                            method.init = method.init,
-                            numCore = numCore)
+  Models <- bootstrapSamples(nboot = nboot, model = model, q_f = q_f,
+                             q_r = q_r, interaction = interaction,
+                             covar = covar, pdmat = pdmat,
+                             var.class = var.class,
+                             weights.form = weights.form,
+                             show.warnings = show.warnings,
+                             lme.control = lme.control,
+                             method.init = method.init,
+                             numCore = numCore)
   #---------------------------------------------------------------------
   # Computing the lcc or lcc, lpc and la bootstrap confidence intervals
   #---------------------------------------------------------------------

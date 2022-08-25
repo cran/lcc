@@ -27,6 +27,8 @@ default, \code{NULL}.}
 \value{
 A data frame with columns given by methods, time, and
   fitted values.
+
+No return value, called for side effects
 }
 \description{
 Fitted values from object of class \code{lcc}

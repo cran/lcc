@@ -22,7 +22,7 @@
 ##'   bootstrap samples.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -39,17 +39,17 @@
 ##' @keywords internal
 
 dataBootstrap<-function(model){
-N<-length(levels(model$data$subject))
-Dataset<-model$data
-subject<-NULL
-sample_data<-sample(as.character(unique(model$data$subject)),
+N <- length(levels(model$data$subject))
+Dataset <- model$data
+subject <- NULL
+sample_data <- sample(as.character(unique(model$data$subject)),
                     N,replace=TRUE)
-Frame<-list(NA)
-for(i in 1:N){
-  Frame[[i]]<-subset(Dataset, subject==sample_data[i])
-  Frame[[i]]$subject<-c(rep(i,length(Frame[[i]][,1])))
+Frame <- list(NA)
+for (i in 1:N) {
+  Frame[[i]] <- subset(Dataset, subject==sample_data[i])
+  Frame[[i]]$subject <- c(rep(i,length(Frame[[i]][,1])))
 }
-Boot_Dataset<-do.call(rbind.data.frame, Frame)
+Boot_Dataset <- do.call(rbind.data.frame, Frame)
 return(Boot_Dataset)
 }
 
@@ -60,7 +60,7 @@ return(Boot_Dataset)
 ##'   fixed effects and variance components for each bootstrap sample.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -180,7 +180,7 @@ bootstrapSamples<-function(nboot, model, q_f, q_r, interaction, covar,
       Diff[[i]]<-betas
     }
   }
-  cat("\n", "  Convergence error in", warnings, "out of",
+  message("\n", "  Convergence error in", warnings, "out of",
                              nboot, "bootstrap samples.", "\n")
   lcc.bootstrap <- list("Boot_Model" = Boot_model, "Diffbetas"=Diff)
   class(lcc.bootstrap) <- "lcc.bootstrap"
@@ -194,7 +194,7 @@ bootstrapSamples<-function(nboot, model, q_f, q_r, interaction, covar,
 ##'   longitudinal concordance correlation samples.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -245,7 +245,7 @@ lccBootstrap<-function(model_boot, diff_boot, ldb, nboot, tk, q_f){
 ##'   longitudinal Pearson correlation samples.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'
@@ -292,7 +292,7 @@ lpcBootstrap<-function(model_boot, ldb, nboot, tk, q_f){
 ##'   longitudinal caccuracy samples.
 ##'
 ##' @usage NULL
-##'
+##' @return No return value, called for side effects
 ##' @author Thiago de Paula Oliveira,
 ##'   \email{thiago.paula.oliveira@@alumni.usp.br}
 ##'

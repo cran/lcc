@@ -4,6 +4,9 @@
 \alias{plotBuilder_lpc}
 \title{Internal Function to Produces a Longitudinal Perason
   Correlation Plot.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called function used to produces
   a longitudinal Perason correlation plot from fitted ans sampled

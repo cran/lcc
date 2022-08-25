@@ -4,6 +4,9 @@
 \alias{lccBootstrap}
 \title{Internal functions to generate longitudinal concordance
   correlation samples.}
+\value{
+No return value, called for side effects
+}
 \description{
 This is an internally called functions used to generate
   longitudinal concordance correlation samples.
